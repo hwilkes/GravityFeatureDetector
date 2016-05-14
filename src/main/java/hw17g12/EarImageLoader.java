@@ -7,8 +7,10 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import org.openimaj.image.FImage;
@@ -43,6 +45,18 @@ public class EarImageLoader {
 			return images.get(classname).toArray(new FImage[images.get(classname).size()]);
 		}
 	}
+	
+	public Integer getNumberOfImages(){
+		Integer num = 0;
+		Iterator<Entry<String,List<FImage>>> iter = images.entrySet().iterator();
+		
+		while(iter.hasNext())
+		{
+			num = num + iter.next().getValue().size();
+		}
+		return num;
+	}
+	
 	
 	public EarImageLoader() throws IOException{
 		directory = new File(earFolder);
