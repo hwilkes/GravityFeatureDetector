@@ -1,9 +1,11 @@
-package hw17g12;
+package transforms;
 
 import java.io.IOException;
 
 import org.openimaj.image.DisplayUtilities;
 import org.openimaj.image.FImage;
+
+import hw17g12.EarImageLoader;
 
 public class TransformTest {
 	public static void main(String args[]){
@@ -15,13 +17,14 @@ public class TransformTest {
 			float[][] brighter = new float[img.pixels.length][img.pixels[0].length];
 			for(int x = 0; x < brighter.length; x++){
 				for(int y = 0; y < brighter[0].length; y++){
-					brighter[x][y] = img.pixels[x][y]*2f;
+					brighter[x][y] = img.pixels[x][y]*1.0f;
 				}
 			}
 			FImage newImg = new FImage(brighter);
-			ForceFieldTransform fft = new ForceFieldTransform(newImg);
-			
-			FImage transformed = fft.getTransform();
+			//ForceFieldTransform fft = new ForceFieldTransform(newImg);
+			//InvertibleLinearTransform il = new InvertibleLinearTransform(newImg);
+			CelestialEdgeDectection cd = new CelestialEdgeDectection(newImg);
+			FImage transformed = cd.getTransform();
 			
 			DisplayUtilities.display(newImg);
 			DisplayUtilities.display(transformed);
