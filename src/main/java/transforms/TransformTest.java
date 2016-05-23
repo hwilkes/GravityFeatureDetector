@@ -18,6 +18,7 @@ public class TransformTest {
 			for(int x = 0; x < brighter.length; x++){
 				for(int y = 0; y < brighter[0].length; y++){
 					brighter[x][y] = img.pixels[x][y]*1.0f;
+
 				}
 			}
 			FImage newImg = new FImage(brighter);
